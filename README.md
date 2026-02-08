@@ -97,3 +97,36 @@ category
 ItemService manages items in an in-memory ArrayList.
 CreateItemRequest is used for input validation when creating an item.
 Validation annotations (@NotBlank, @Size, @PositiveOrZero, etc.) ensure required fields and constraints are satisfied.
+
+
+## Deployment
+
+This project is containerized with Docker and deployed on Render (free tier).
+
+**Live Base URL:**  
+https://item-api-xrfy.onrender.com
+
+### Available Endpoints on Production
+
+- Health Check  
+  `GET https://item-api-xrfy.onrender.com/api/items/health`
+
+- Add a New Item  
+  `POST https://item-api-xrfy.onrender.com/api/items`  
+  Body (JSON example):
+
+  ```json
+  {
+    "name": "iPhone 15",
+    "description": "Latest Apple smartphone",
+    "price": 999.99,
+    "category": "Electronics"
+  }
+
+  Get Item by ID
+GET https://item-api-xrfy.onrender.com/api/items/{id}
+Notes
+The application is deployed on Render's free tier, so if it is idle for some time, the service may go to sleep.
+When the first request comes after being idle, it might take a few seconds to start ("cold start").
+After that, responses are fast and the API works as expected.
+
